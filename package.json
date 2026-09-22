@@ -1,1 +1,17 @@
-
+{
+  "name": "jontez-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "Jontez WhatsApp Bot using Baileys and Express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
+    "express": "^4.21.2",
+    "pino": "^9.6.0"
+  }
+}
