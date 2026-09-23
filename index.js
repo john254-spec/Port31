@@ -2505,8 +2505,88 @@ app.listen(
     );
   }
 );
-
 /*
+====================================================
+PRINT ALL GROUPS
+====================================================
+*/
+
+async function printAllGroups() {
+  if (!sock || connectionStatus !== "open") {
+    console.log("WhatsApp is not connected.");
+    return;
+  }
+
+  try {
+    const groups =
+      await sock.groupFetchAllParticipating();
+
+    const groupIds =
+      Object.keys(groups);
+
+    console.log("");
+    console.log(
+      "================================"
+    );
+    console.log(
+      "WHATSAPP GROUPS"
+    );
+    console.log(
+      "================================"
+    );
+
+    console.log(
+      "Total groups:",
+      groupIds.length
+    );
+
+    for (const id of groupIds) {
+      const group =
+        groups[id];
+
+      console.log("");
+      console.log(
+        "Group name:",
+        group.subject || "Unknown"
+      );
+
+      console.log(
+        "Group ID:",
+        group.id || id
+      );
+
+      console.log(
+        "Participants:",
+        group.participants?.length || 0
+      );
+
+      console.log(
+        "Owner:",
+        group.owner || "Unknown"
+      );
+
+      console.log(
+        "--------------------------------"
+      );
+    }
+
+    console.log(
+      "================================"
+    );
+
+    return groups;
+
+  } catch (err) {
+    console.error(
+      "Failed to fetch groups:",
+      err.message
+    );
+
+    return null;
+  }
+}
+/*
+
 ====================================================
 START BOT
 ====================================================
